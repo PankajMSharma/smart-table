@@ -14,7 +14,15 @@
              placeholder="Enter search string"
              [formControl]="searchText">
     </div>
-  </form>
+
+    <div class="form-group">
+      <button type="button"
+             class="form-control"
+             value="add"
+             (click)="navigateToAddForm($event.target)">ADD NEW
+      </button>
+    </div>
+</form>
 
 <div class="panel panel-default">
     <div class="panel-heading ">Employee Data</div>
@@ -27,8 +35,19 @@
             </thead>
             <tbody>
                 <tr *ngFor="let recordSet of filteredData">
-                        <td *ngFor="let key of recordSet | keys: true">{{key?.value}}</td>
+                    <td *ngFor="let key of recordSet | keys: true">
+                        <div *ngIf="key?.value;else editButton">{{key?.value}}</div>
+                    </td>
+                    <ng-template #editButton>
+                        <button type="button"
+                                class="btn btn-large btn-block btn-default button-stretch"
+                                name="edit"
+                                value="edit"
+                                (click)="navigateToAddForm($event.target, recordSet?.id)">Edit</button>
+                    </ng-template>
                 </tr>
             </tbody>
         </table>
 </div>
+
+<router-outlet></router-outlet>

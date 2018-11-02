@@ -1,0 +1,40 @@
+<form class="update-form form" [formGroup]="employeeForm" (ngSubmit)="onSubmit()" role="form">
+  <legend>{{formTitle}}</legend>
+
+  <div class="form-group">
+    <label for="">Id</label>
+    <input type="number" class="form-control" formControlName="id" placeholder="Id">
+  </div>
+
+  <div class="form-group">
+    <label for="">Name</label>
+    <input type="text" class="form-control" formControlName="name" placeholder="Name">
+  </div>
+
+  <div class="form-group">
+    <label for="">Phone</label>
+    <input type="text" class="form-control" formControlName="phone" placeholder="Phone">
+  </div>
+
+  <div class="form-group">
+    <label for="">City</label>
+    <input type="text" class="form-control" formControlName="city" placeholder="City">
+  </div>
+
+  <div class="form-group">
+    <label for="">Address Line 1</label>
+    <input type="text" class="form-control" formControlName="address_line1" placeholder="Address Line 1">
+  </div>
+
+  <div class="form-group">
+    <label for="">Address Line 2</label>
+    <input type="text" class="form-control" formControlName="address_line2" placeholder="Address Line 2">
+  </div>
+
+  <div class="form-group">
+    <label for="">Postal Code</label>
+    <input type="text" class="form-control" formControlName="postal_code" placeholder="Postal Code">
+  </div>
+
+  <button [disabled]="!employeeForm.valid" type="submit" class="btn btn-primary">Submit</button>
+</form>

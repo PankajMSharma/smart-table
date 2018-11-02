@@ -3,8 +3,9 @@ import { IEmployeeData, IEmployeeRecord } from './modals/employee-data';
 import { EmployeeService } from './services/employee-data.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
-export const headers: Array<string> = ['Id', 'Name', 'Phone', 'City', 'Address 1', 'Address 2', 'Postal Code'];
+export const headers: Array<string> = ['Id', 'Name', 'Phone', 'City', 'Address 1', 'Address 2', 'Postal Code', 'Edit'];
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   public headings: Array<string>;
   public searchText: FormControl;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, private router: Router) {}
 
   ngOnInit() {
     this.headings = headers;
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  private fetchEmployeeData() {
+  private fetchEmployeeData(): void {
     this.employeeService.getEmployeeData().subscribe(this.takeResponse);
   }
 
@@ -51,6 +52,14 @@ export class AppComponent implements OnInit {
         return false;
       }
     });
+  }
+
+  public navigateToAddForm(target, id?): void {
+    if (id) {
+      this.router.navigate(['employees', id, 'edit']);
+    } else {
+      this.router.navigate(['employees/add']);
+    }
   }
 
 }

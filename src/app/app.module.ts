@@ -7,22 +7,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { EmployeeService } from './services/employee-data.service';
 import { KeysPipe } from './pipes/key-of-object';
+import { AppRoutingModule } from './app.routing';
+import { FormComponent } from './form/form.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    KeysPipe
+    KeysPipe,
+    FormComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [
     EmployeeService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [LoaderComponent]
 })
 export class AppModule { }
